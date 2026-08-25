@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字委託所 | Commission</title>
+    <!-- 引入Google Fonts 宋體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcfbfa;
+            --main-color: #2c2421;
+            --accent-color: #8c4a4a; /* 暗紅絲帶色 */
+            --gold-color: #c5a880;   /* 珍珠金邊 */
+            --pearl-white: #f7f4f0;
+            --border-color: #e6ded5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Serif TC', "Songti TC", "SimSun", serif;
+            background-color: var(--bg-color);
+            color: var(--main-color);
+            line-height: 2.2;
+            letter-spacing: 0.05em;
+        }
+
+        /* 頂部裝飾絲帶條 */
+        .ribbon-bar {
+            background-color: var(--accent-color);
+            color: #fff;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 6px 0;
+            letter-spacing: 0.2em;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--main-color);
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: #6c605c;
+        }
+
+        /* 導覽列 */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background: var(--pearl-white);
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--main-color);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 35px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* 巴洛克優雅珍珠風格標題裝飾 */
+        h2::before, h2::after {
+            content: "✦";
+            color: var(--gold-color);
+            margin: 0 15px;
+            font-size: 0.8rem;
+        }
+
+        /* 委託項目卡片 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(197, 168, 128, 0.15);
+            border-color: var(--gold-color);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        /* 注意事項與流程 */
+        .steps, .rules {
+            background: var(--pearl-white);
+            padding: 35px;
+            border: 1px solid var(--border-color);
+        }
+
+        ol, ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        /* 聯絡/按鈕區 */
+        .contact-box {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 35px;
+            background-color: var(--main-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            transition: background 0.3s, border-color 0.3s;
+            border: 1px solid var(--main-color);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid var(--border-color);
+            background: var(--pearl-white);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ribbon-bar">✦ 典雅文字委託，織造您的專屬篇章 ✦</div>
+
+    <header>
+        <h1>文字委託所</h1>
+        <p>短篇小說 ｜ 角色對白 ｜ 劇情設定 ｜ 抒情散文</p>
+    </header>
+
+    <nav>
+        <a href="#about">關於我</a>
+        <a href="#items">委託項目</a>
+        <a href="#process">委託流程</a>
+        <a href="#contact">聯絡與表單</a>
+    </nav>
+
+    <div class="container">
+        <!-- 關於區塊 -->
+        <section id="about">
+            <h2>關於委託</h2>
+            <div class="rules" style="text-align: center;">
+                <p>這裡提供細膩、有溫度且貼近角色靈魂的文字創作服務。<br>無論是同人創作、原創設定、或是情感抒發，都能在這裡找到合適的筆觸。</p>
+            </div>
+        </section>
+
+        <!-- 委託項目 -->
+        <section id="items">
+            <h2>委託項目與報價</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>客製化短篇小說</h3>
+                    <p>依據您提供的設定、大綱或關鍵字，量身打造精緻短篇故事。</p>
+                    <div class="price">NT$ 1,000 起 / 千字</div>
+                </div>
+                <div class="card">
+                    <h3>角色對話與劇本</h3>
+                    <p>專注於人物之間的張力、對話互動與細膩的情緒堆疊。</p>
+                    <div class="price">NT$ 800 起</div>
+                </div>
+                <div class="card">
+                    <h3>世界觀與設定梳理</h3>
+                    <p>幫您的故事背景、人物關係進行文字化潤飾與系統整合。</p>
+                    <div class="price">NT$ 600 起</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 委託流程 -->
+        <section id="process">
+            <h2>委託流程</h2>
+            <div class="steps">
+                <ol>
+                    <li><strong>私訊討論：</strong> 透過下方聯絡方式提供您的需求、字數、截稿日與相關設定。</li>
+                    <li><strong>確認報價與排單：</strong> 確認內容後將給予總報價與預計完稿日，並安排進度。</li>
+                    <li><strong>支付訂金：</strong> 匯款半額訂金後正式開工。</li>
+                    <li><strong>草稿/進度確認：</strong> 提供大綱或前段試閱確認方向。</li>
+                    <li><strong>完稿與尾款：</strong> 提供完稿確認無誤、支付尾款後交付全篇檔案。</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 聯絡區塊 -->
+        <section id="contact" class="contact-box">
+            <h2>開啟委託</h2>
+            <p>如果您有任何想法或想進一步討論，歡迎隨時聯繫我！</p>
+            <!-- 請將下方連結換成你的 Plurk、X(Twitter) 或 Google 表單 -->
+            <a href="https://www.plurk.com/" target="_blank" class="btn">前往噗浪 / 填寫表單</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 文字委託所. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
