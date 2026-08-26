@@ -16,7 +16,7 @@
             --border-color: #e6d7d5;    
             --mauve-color: #b8868b;     
             --calendar-badge-bg: #d9bec1; 
-            --highlight-bg: #f7cbcf;    /* 螢光筆畫重點顏色（淺灰粉色） */
+            --highlight-bg: #ebdcdc;    /* 螢光筆畫重點顏色（淺灰粉色） */
         }
 
         * {
@@ -41,6 +41,18 @@
             background-color: var(--highlight-bg);
             padding: 0.1em 0.3em;
             border-radius: 2px;
+        }
+
+        /* 超連結樣式 */
+        .content-box a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: opacity 0.3s ease;
+        }
+
+        .content-box a:hover {
+            opacity: 0.7;
         }
 
         /* 1. 滿版橫幅 */
@@ -317,7 +329,7 @@
             transform: rotate(90deg);
         }
 
-        /* 隱藏右側原本的箭頭（因為改用左側小三角了） */
+        /* 隱藏右側原本的箭頭 */
         summary::after {
             content: "";
         }
@@ -675,20 +687,20 @@
             <div class="content-box">
                 <ul>
                     <li><strong>驚喜包：</strong><br>什麼都不指定，除字數外皆由我決定。</li>
-                    <li><strong>一般委託：</strong><br>配圖、配歌曲、paro、tag，或者有大致情節發展要求, 主題走向等皆可。</li>
+                    <li><strong>一般委託：</strong><br>配圖、配歌曲、paro、tag，或者有大致情節發展要求、主題走向等皆可。</li>
                     <li><strong>噗轉主題：</strong><br>在噗浪開過的文字轉蛋台，有興趣也可以委託這些項目。<br>計價方式同此網站，並非轉蛋價格。僅做為委託主題參考。</li>
                 </ul>
 
-                <!-- 主題一覽收納（無點點） -->
+                <!-- 主題一覽收納（無點點 + 加上超連結） -->
                 <details>
                     <summary>主題一覽</summary>
                     <div class="details-content">
                         <ul class="no-bullet-list">
-                            <li>💤 春睏、秋乏、夏倦、冬眠</li>
-                            <li>🌬️ 普魯斯特效應</li>
-                            <li>📖 童話故事抽抽樂</li>
-                            <li>🏠 一屋、兩人、三餐、四季</li>
-                            <li>⛅️ 晴時多雲偶陣雨</li>
+                            <li><a href="https://www.plurk.com/p/paqryy" target="_blank">💤 春睏、秋乏、夏倦、冬眠</a></li>
+                            <li><a href="https://www.plurk.com/p/3gir6m9x8e" target="_blank">🌬️ 普魯斯特效應</a></li>
+                            <li><a href="https://www.plurk.com/p/3gm513txm6" target="_blank">📖 童話故事抽抽樂</a></li>
+                            <li><a href="https://www.plurk.com/p/3h9f1yd9f3" target="_blank">🏠 一屋、兩人、三餐、四季</a></li>
+                            <li><a href="https://www.plurk.com/p/3iwkdda9ky" target="_blank">⛅️ 晴時多雲偶陣雨</a></li>
                         </ul>
                     </div>
                 </details>
