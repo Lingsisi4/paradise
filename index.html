@@ -251,22 +251,28 @@
             text-decoration: underline;
         }
 
-        h2 {
-            font-size: 1.25rem;
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: 600;
-            color: var(--main-color);
+        /* 內頁標題與 GIF 組合的置中容器 */
+        .page-title-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        h2::before, h2::after {
-            content: "❦";
-            color: var(--gold-accent);
-            font-size: 0.85rem;
+        .page-title-gif {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--main-color);
+            margin: 0;
+            letter-spacing: 0.1em;
         }
 
         .content-box {
@@ -619,7 +625,10 @@
 
         <!-- 1. 注意事項 頁面 -->
         <div id="page-rules" class="page-content">
-            <h2>注意事項</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>注意事項𓂃⊹꙳</h2>
+            </div>
             <div class="content-box">
                 <ul>
                     <li>請確認喜歡文風再進行委託，不接受使用有關<span class="highlight">「風格不喜歡」</span>的理由退稿。</li>
@@ -661,7 +670,10 @@
 
         <!-- 2. 價目表 頁面 -->
         <div id="page-pricing" class="page-content">
-            <h2>價目表</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>價目表</h2>
+            </div>
             <div class="content-box">
                 <ul>
                     <li>驚喜包：0.3／字</li>
@@ -689,7 +701,10 @@
 
         <!-- 3. 委託項目 頁面 -->
         <div id="page-items" class="page-content">
-            <h2>委託項目</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>委託項目</h2>
+            </div>
             <div class="content-box">
                 <ul>
                     <li><strong><span class="highlight">驚喜包：</span></strong><br>什麼都不指定，除字數外皆由我決定。</li>
@@ -718,7 +733,10 @@
 
         <!-- 4. 委託流程 頁面 -->
         <div id="page-process" class="page-content">
-            <h2>委託流程</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>委託流程</h2>
+            </div>
             <div class="content-box">
                 <ol>
                     <li><strong>私訊討論：</strong> 選擇委託項目、提供資料、工期告知等細節敲定。</li>
@@ -746,7 +764,10 @@
 
         <!-- 5. 範例 頁面 -->
         <div id="page-samples" class="page-content">
-            <h2>範例</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>範例</h2>
+            </div>
             <div class="content-box" style="text-align: center;">
                 <p>此處可放置您的過往文字作品試閱連結或截圖文字。</p>
             </div>
@@ -757,7 +778,10 @@
 
         <!-- 6. 排單狀況 頁面 -->
         <div id="page-schedule" class="page-content">
-            <h2>排單狀況</h2>
+            <div class="page-title-container">
+                <img src="IMG_5453.gif" alt="裝飾GIF" class="page-title-gif">
+                <h2>排單狀況</h2>
+            </div>
             <div class="content-box">
                 <div class="schedule-tip">
                     一週約排2～3篇，<br>
