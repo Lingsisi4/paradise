@@ -34,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. 滿版橫幅（在卷軸框外面，貼齊螢幕兩側） */
+        /* 1. 滿版橫幅（在卷軸框外面） */
         .full-banner {
             width: 100vw;
             height: 220px;
@@ -303,52 +303,47 @@
         }
 
         /* ==========================================
-           專屬手機版微調（完全不影響平板與電腦）
+           手機專屬優化：讓手機也能像平板一樣「靠左並排」
            ========================================== */
         @media (max-width: 768px) {
             .full-banner {
                 height: 150px;
             }
             .header-outer-container {
-                margin-top: -30px;
+                margin-top: -25px;
                 padding: 0 15px;
             }
-            /* 手機上改為上下置中堆疊，但保持精緻乾淨 */
+            /* 強制維持左右並排靠左，不上下置中 */
             .header-layout {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-                text-align: center;
-                gap: 10px;
+                justify-content: flex-start;
+                gap: 12px;
             }
             .avatar-img {
-                width: 110px;
-                height: 110px;
+                width: 90px; /* 在手機上稍微縮小一點點以適應寬度 */
+                height: 90px;
             }
             .title-group {
-                align-items: center;
                 min-height: auto;
-                gap: 8px;
-                width: 100%;
+                gap: 4px;
             }
             .title-shi {
-                font-size: 2.1rem;
-            }
-            .title-lower-row {
-                justify-content: center;
-                gap: 10px;
-                flex-direction: row; /* 保持樂園與英文橫向或順暢換行 */
-            }
-            .title-leyuan {
                 font-size: 1.8rem;
             }
+            .title-lower-row {
+                gap: 6px;
+            }
+            .title-leyuan {
+                font-size: 1.6rem;
+            }
             .divider-line {
-                display: none; /* 手機空間有限，隱藏直隔板讓排版更清爽 */
+                font-size: 1rem;
             }
             .subtitle-english {
-                max-width: 100%;
-                text-align: center;
-                font-size: 0.75rem;
-                padding: 0 10px;
+                font-size: 0.65rem; /* 縮小英文讓它在手機上能完美並排塞入 */
+                line-height: 1.3;
+                max-width: 210px;
             }
             .wrapper {
                 padding: 30px 15px;
