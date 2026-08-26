@@ -8,12 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f7f3ee;        /* 柔和復古羊皮紙色 */
-            --container-bg: #fffcf9;    /* 內頁微白底色 */
-            --main-color: #3b302a;      /* 深可可色 */
-            --accent-color: #8c4a4a;    /* 古典暗紅 */
-            --gold-accent: #b89768;     /* 復古金邊 */
-            --border-color: #dfd3c3;    /* 復古米灰邊框 */
+            --bg-color: #f7f3ee;        
+            --container-bg: #fffcf9;    
+            --main-color: #3b302a;      
+            --accent-color: #8c4a4a;    
+            --gold-accent: #b89768;     
+            --border-color: #dfd3c3;    
             --mauve-color: #b8868b;     /* 藕粉色 */
         }
 
@@ -62,13 +62,17 @@
             pointer-events: none;
         }
 
-        /* 頂部橫幅區塊（無邊框、純圖片） */
+        /* 頂部結構容器：用來精準定位大頭貼與標題 */
+        .top-section {
+            position: relative;
+            margin-bottom: 75px; /* 保留空間給下方「樂園」那一排文字 */
+        }
+
+        /* 橫幅照片 */
         .banner-container {
             width: 100%;
-            height: 220px;
+            height: 200px;
             overflow: hidden;
-            position: relative;
-            margin-bottom: 50px; /* 預留下方大頭貼與標題的空間 */
         }
 
         .banner-container img {
@@ -79,46 +83,41 @@
             border: none;
         }
 
-        /* 大頭貼跨在橫幅底線上 */
+        /* 大頭貼：強制固定尺寸與跨線位置 */
         .avatar-img {
             position: absolute;
-            left: 40px;
-            bottom: -35px; /* 讓大頭貼中心剛好切在橫幅底線 */
+            left: 35px;
+            bottom: -45px; /* 剛好卡在橫幅底線上 */
             width: 110px;
             height: 110px;
             object-fit: cover;
+            border-radius: 0; /* 不要圓形 */
             box-shadow: 0 4px 15px rgba(59, 48, 42, 0.2);
-            z-index: 5;
+            z-index: 10;
             background: #fff;
+            border: 2px solid var(--container-bg);
         }
 
-        /* 標頭與排版區塊 */
-        header {
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
-            padding-left: 10px;
-        }
-
-        /* 「失」字：在橫幅上、大頭貼右側 */
+        /* 「失」字：在橫幅上方、大頭貼右側 */
         .title-shi {
             position: absolute;
-            left: 175px;
-            top: -42px;
-            font-size: 2.5rem;
+            left: 165px;
+            bottom: 12px; /* 貼在橫幅上方邊緣 */
+            font-size: 2.4rem;
             font-weight: 700;
             color: var(--main-color);
             letter-spacing: 0.1em;
             line-height: 1;
+            z-index: 10;
         }
 
-        /* 「樂園」與英文區塊：在橫幅下方 */
+        /* 樂園與英文區塊：在橫幅下方 */
         .title-lower-row {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-left: 165px; /* 與上方「失」字對齊 */
         }
 
         /* 「樂園」二字：藕粉色 */
@@ -128,6 +127,7 @@
             color: var(--mauve-color);
             letter-spacing: 0.2em;
             line-height: 1.2;
+            white-space: nowrap;
         }
 
         /* 中間直線隔板 */
@@ -137,12 +137,12 @@
             font-weight: 300;
         }
 
-        /* 英文長句：限制寬度自動分兩行 */
+        /* 英文長句：自動折行，限制寬度 */
         .subtitle-english {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: #736357;
             font-style: italic;
-            max-width: 480px;
+            max-width: 420px;
             line-height: 1.6;
             letter-spacing: 0.05em;
         }
@@ -298,26 +298,24 @@
 <body>
 
     <div class="wrapper">
-        <!-- 頂部橫幅與大頭貼組合 -->
-        <div class="banner-container">
-            <img src="橫幅.jpeg" alt="失樂園橫幅">
+        <!-- 頂部區塊：包含橫幅、大頭貼、「失」字 -->
+        <div class="top-section">
+            <div class="banner-container">
+                <img src="橫幅.jpeg" alt="失樂園橫幅">
+            </div>
             <img src="大頭貼.png" alt="大頭貼" class="avatar-img">
+            <div class="title-shi">失</div>
         </div>
 
-        <header>
-            <!-- 「失」字跨在橫幅右側 -->
-            <div class="title-shi">失</div>
-
-            <!-- 下方「樂園」與英文長句排版 -->
-            <div class="title-lower-row">
-                <div class="title-leyuan">樂園</div>
-                <div class="divider-line">｜</div>
-                <div class="subtitle-english">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
-            </div>
-        </header>
+        <!-- 下方標題列：「樂園」與英文長句 -->
+        <div class="title-lower-row">
+            <div class="title-leyuan">樂園</div>
+            <div class="divider-line">｜</div>
+            <div class="subtitle-english">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
+        </div>
 
         <!-- 6個項目的目錄 -->
-        <nav>
+        <nav style="margin-top: 45px;">
             <a href="#rules">注意事項</a>
             <a href="#pricing-table">價目表</a>
             <a href="#items">委託項目</a>
