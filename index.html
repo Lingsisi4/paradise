@@ -151,10 +151,10 @@
             pointer-events: none;
         }
 
-        /* 首頁：無邊框、完整呈現暈染效果的雜誌網格 */
+        /* 首頁：無邊框、完整呈現暈染效果的網格目錄 */
         .magazine-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 平板與電腦 3 欄 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px 20px;
             padding: 5px 10px 10px 10px;
             position: relative;
@@ -173,7 +173,6 @@
             transform: translateY(-4px);
         }
 
-        /* 移除固定高度限制，讓帶有暈染邊界的圖片完整呼吸 */
         .menu-item img {
             width: 100%;
             height: auto;
@@ -202,7 +201,7 @@
             display: block;
         }
 
-        /* 內頁最下方置中的返回首頁按鈕（無外框設計） */
+        /* 內頁最下方置中的返回首頁按鈕（無外框） */
         .bottom-back-container {
             text-align: center;
             margin-top: 30px;
@@ -315,10 +314,9 @@
             z-index: 2;
         }
 
-        /* 分隔線：平板/電腦自動橫跨左右，手機維持原本大小 */
         .divider-image {
             width: 100%;
-            max-width: 100%; /* 平板與電腦自動延展鋪滿 */
+            max-width: 380px; 
             height: auto;
             display: block;
             margin: 25px auto 20px auto;
@@ -343,7 +341,7 @@
             z-index: 2;
         }
 
-        /* 手機響應式微調 */
+        /* 手機響應式專屬微調（不影響平板） */
         @media (max-width: 768px) {
             .full-banner {
                 height: 150px;
@@ -383,17 +381,24 @@
                 line-height: 1.3;
                 max-width: 210px;
             }
+            /* 讓手機版的外框內縮，避免與虛線重疊 */
             .wrapper {
-                padding: 30px 15px;
+                padding: 25px 18px;
                 margin: 0 10px 30px 10px;
             }
             .magazine-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px 12px;
             }
-            /* 手機版的分隔線限制最大寬度，保持精緻不變形 */
+            /* 手機版內容白框與卡片微調縮減，製造安全距離 */
+            .content-box {
+                padding: 22px 18px;
+            }
+            .card {
+                padding: 18px 15px;
+            }
             .divider-image {
-                max-width: 320px; 
+                max-width: 280px; 
             }
         }
     </style>
@@ -405,7 +410,7 @@
         <img src="橫幅.jpeg" alt="失樂園橫幅">
     </div>
 
-    <!-- 2. 大頭貼與大頭貼右側標題區塊 -->
+    <!-- 2. 大頭貼與標題區塊 -->
     <div class="header-outer-container">
         <div class="header-layout">
             <img src="大頭貼.png" alt="大頭貼" class="avatar-img">
@@ -463,7 +468,6 @@
                     <li><strong>修改次數：</strong>草稿與完稿階段皆包含指定次數的微調，大改需酌收費用。</li>
                 </ul>
             </div>
-            <!-- 置中返回首頁按鈕（無外框） -->
             <div class="bottom-back-container">
                 <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
@@ -552,14 +556,12 @@
         <!-- 開放委託與公告區塊 -->
         <div style="margin-top: 30px;">
             <div class="contact-section">
+                <!-- 更新後的檔案名稱 -->
                 <img src="1787730329333-removebg-preview.png" alt="分隔線" class="divider-image">
                 <div class="contact-text">
-                    感謝您的瀏覽參考，<br>
-                    有需要的話歡迎直接私訊～<br>
-                    作息比較不固定，<br>
-                    在線有看到會馬上回覆。<br>
-                    沒回就是在睡覺(＞人＜;)<br>
-                    委託過程中有任何問題隨時可以提出。
+                    感謝您的瀏覽參考，有需要的話歡迎直接私訊～<br>
+                    作息比較不固定，在線有看到會馬上回覆。沒回就是在睡覺(＞人＜;)<br>
+                    委託過程中有任何問題隨時可以提出，很好說話也很有耐心 ₍ᐢ. ̫.ᐢ₎♡
                 </div>
             </div>
         </div>
