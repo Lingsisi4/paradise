@@ -34,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. 滿版橫幅（在卷軸框外面） */
+        /* 1. 滿版橫幅（在卷軸框外面，貼齊螢幕兩側） */
         .full-banner {
             width: 100vw;
             height: 220px;
@@ -50,10 +50,10 @@
             display: block;
         }
 
-        /* 2. 標題與大頭貼對齊區塊（在卷軸框外面，讓整體視覺更開闊） */
+        /* 2. 標題與大頭貼對齊區塊（桌機與平板版樣式） */
         .header-outer-container {
             max-width: 900px;
-            margin: -35px auto 30px auto; /* 讓大頭貼自然與橫幅交疊 */
+            margin: -35px auto 30px auto; 
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -64,14 +64,13 @@
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            flex-wrap: wrap;
         }
 
-        /* 左側：透明大頭貼（無白底、無陰影、放大） */
+        /* 左側：透明大頭貼 */
         .avatar-img {
             width: 150px;
             height: 150px;
-            object-fit: contain; /* 確保透明 PNG 不失真 */
+            object-fit: contain; 
             background: transparent;
             box-shadow: none;
             border: none;
@@ -84,7 +83,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 140px; /* 與大頭貼上下高度完美對齊 */
+            min-height: 140px; 
         }
 
         /* 第一行：「失」字 */
@@ -131,7 +130,7 @@
             letter-spacing: 0.04em;
         }
 
-        /* 3. 卷軸框本體（從目錄條開始包在裡面） */
+        /* 3. 卷軸框本體 */
         .wrapper {
             max-width: 900px;
             margin: 0 auto 50px auto;
@@ -282,7 +281,7 @@
             color: #f7f3ee;
             text-decoration: none;
             font-size: 0.9rem;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             border: 1px solid var(--main-color);
             transition: all 0.3s;
         }
@@ -303,52 +302,73 @@
             z-index: 2;
         }
 
-        /* 4. 手機響應式優化（RWD 專用設定：防止手機畫面跑版） */
+        /* ==========================================
+           專屬手機版微調（完全不影響平板與電腦）
+           ========================================== */
         @media (max-width: 768px) {
             .full-banner {
-                height: 160px;
+                height: 150px;
             }
             .header-outer-container {
-                margin-top: -25px;
+                margin-top: -30px;
                 padding: 0 15px;
             }
+            /* 手機上改為上下置中堆疊，但保持精緻乾淨 */
             .header-layout {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
+                gap: 10px;
+            }
+            .avatar-img {
+                width: 110px;
+                height: 110px;
             }
             .title-group {
                 align-items: center;
                 min-height: auto;
-                gap: 12px;
+                gap: 8px;
+                width: 100%;
+            }
+            .title-shi {
+                font-size: 2.1rem;
             }
             .title-lower-row {
                 justify-content: center;
                 gap: 10px;
+                flex-direction: row; /* 保持樂園與英文橫向或順暢換行 */
+            }
+            .title-leyuan {
+                font-size: 1.8rem;
+            }
+            .divider-line {
+                display: none; /* 手機空間有限，隱藏直隔板讓排版更清爽 */
             }
             .subtitle-english {
                 max-width: 100%;
                 text-align: center;
+                font-size: 0.75rem;
+                padding: 0 10px;
             }
             .wrapper {
-                padding: 30px 20px;
+                padding: 30px 15px;
                 margin: 0 10px 30px 10px;
             }
             nav {
-                gap: 12px 18px;
-                font-size: 0.85rem;
+                gap: 10px 15px;
+                font-size: 0.82rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. 滿版橫幅（在卷軸框外面，貼齊螢幕兩側） -->
+    <!-- 1. 滿版橫幅 -->
     <div class="full-banner">
         <img src="橫幅.jpeg" alt="失樂園橫幅">
     </div>
 
-    <!-- 2. 大頭貼與標題區塊（在卷軸框外面，完美對齊） -->
+    <!-- 2. 大頭貼與標題區塊 -->
     <div class="header-outer-container">
         <div class="header-layout">
             <img src="大頭貼.png" alt="大頭貼" class="avatar-img">
@@ -363,7 +383,7 @@
         </div>
     </div>
 
-    <!-- 3. 卷軸框本體（從目錄條開始包在裡面） -->
+    <!-- 3. 卷軸框本體 -->
     <div class="wrapper">
         <!-- 6個項目的目錄 -->
         <nav>
