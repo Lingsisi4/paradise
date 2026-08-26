@@ -178,21 +178,37 @@
             color: var(--accent-color);
         }
 
-        /* 首頁 2欄 × 3排 的圖片目錄格線設計 */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px 25px;
-            padding: 10px 20px 20px 20px;
+        /* 首頁左右交錯（Z字形）的目錄清單設計 */
+        .menu-zigzag-container {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            padding: 10px 20px;
             position: relative;
             z-index: 2;
+        }
+
+        .menu-row {
+            display: flex;
+            width: 100%;
+        }
+
+        /* 奇數行靠左 */
+        .menu-row.left {
+            justify-content: flex-start;
+        }
+
+        /* 偶數行靠右 */
+        .menu-row.right {
+            justify-content: flex-end;
         }
 
         .menu-item {
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            display: block;
+            display: inline-block;
+            width: 220px; /* 控制單個目錄項目的最大寬度 */
             transition: transform 0.3s ease;
         }
 
@@ -200,23 +216,21 @@
             transform: translateY(-5px);
         }
 
+        /* 透明圖片：拿掉所有邊框、陰影、背景 */
         .menu-item img {
             width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(59, 48, 42, 0.08);
+            height: auto;
+            max-height: 110px;
+            object-fit: contain;
+            background: transparent;
+            border: none;
+            box-shadow: none;
             display: block;
-            margin-bottom: 10px;
-            transition: border-color 0.3s;
-        }
-
-        .menu-item:hover img {
-            border-color: var(--gold-accent);
+            margin: 0 auto 8px auto;
         }
 
         .menu-item span {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--main-color);
             font-weight: 500;
             letter-spacing: 0.1em;
@@ -233,7 +247,7 @@
             display: block;
         }
 
-        /* 返回首頁按鈕（讓各分頁內都可以輕鬆回首頁選單） */
+        /* 返回首頁按鈕 */
         .back-home-btn {
             display: inline-block;
             margin-bottom: 25px;
@@ -404,12 +418,8 @@
                 padding: 30px 15px;
                 margin: 0 10px 30px 10px;
             }
-            .menu-grid {
-                gap: 20px 15px;
-                padding: 5px;
-            }
-            .menu-item img {
-                height: 130px;
+            .menu-item {
+                width: 170px; /* 手機上適度調整圖片區塊寬度 */
             }
             .nav-footer-bar {
                 gap: 10px 15px;
@@ -443,33 +453,51 @@
     <!-- 3. 卷軸框本體 -->
     <div class="wrapper">
 
-        <!-- 首頁：2欄 × 3排的圖片目錄選單 -->
+        <!-- 首頁：左右交錯（Z字形）的圖片目錄選單 -->
         <div id="page-home" class="page-content active">
-            <div class="menu-grid">
-                <a class="menu-item" onclick="switchPage('rules')">
-                    <img src="注意事項.png" alt="注意事項">
-                    <span>注意事項</span>
-                </a>
-                <a class="menu-item" onclick="switchPage('pricing')">
-                    <img src="價目表.png" alt="價目表">
-                    <span>價目表</span>
-                </a>
-                <a class="menu-item" onclick="switchPage('items')">
-                    <img src="委託項目.png" alt="委託項目">
-                    <span>委託項目</span>
-                </a>
-                <a class="menu-item" onclick="switchPage('process')">
-                    <img src="委託流程.png" alt="委託流程">
-                    <span>委託流程</span>
-                </a>
-                <a class="menu-item" onclick="switchPage('samples')">
-                    <img src="範例.png" alt="範例">
-                    <span>範例</span>
-                </a>
-                <a class="menu-item" onclick="switchPage('schedule')">
-                    <img src="排單.png" alt="排單">
-                    <span>排單</span>
-                </a>
+            <div class="menu-zigzag-container">
+                <!-- 第 1 行：注意事項 (靠左) -->
+                <div class="menu-row left">
+                    <a class="menu-item" onclick="switchPage('rules')">
+                        <img src="7b6fb49bc6d7ba1b5f4e5bd70302a92e.png" alt="注意事項">
+                        <span>注意事項</span>
+                    </a>
+                </div>
+                <!-- 第 2 行：價目表 (靠右) -->
+                <div class="menu-row right">
+                    <a class="menu-item" onclick="switchPage('pricing')">
+                        <img src="價目表.png" alt="價目表">
+                        <span>價目表</span>
+                    </a>
+                </div>
+                <!-- 第 3 行：委託項目 (靠左) -->
+                <div class="menu-row left">
+                    <a class="menu-item" onclick="switchPage('items')">
+                        <img src="委託項目.png" alt="委託項目">
+                        <span>委託項目</span>
+                    </a>
+                </div>
+                <!-- 第 4 行：委託流程 (靠右) -->
+                <div class="menu-row right">
+                    <a class="menu-item" onclick="switchPage('process')">
+                        <img src="委託流程.png" alt="委託流程">
+                        <span>委託流程</span>
+                    </a>
+                </div>
+                <!-- 第 5 行：範例 (靠左) -->
+                <div class="menu-row left">
+                    <a class="menu-item" onclick="switchPage('samples')">
+                        <img src="範例.png" alt="範例">
+                        <span>範例</span>
+                    </a>
+                </div>
+                <!-- 第 6 行：排單 (靠右) -->
+                <div class="menu-row right">
+                    <a class="menu-item" onclick="switchPage('schedule')">
+                        <img src="排單.png" alt="排單">
+                        <span>排單</span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -605,7 +633,7 @@
             </div>
         </div>
 
-        <!-- 聯絡與表單（你可以選擇要不要放在各頁面或保留） -->
+        <!-- 聯絡與表單 -->
         <div style="margin-top: 40px;">
             <div class="contact-section">
                 <h2>開啟委託</h2>
@@ -639,4 +667,3 @@
 
 </body>
 </html>
-
