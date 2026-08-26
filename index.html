@@ -16,7 +16,7 @@
             --border-color: #e6d7d5;    
             --mauve-color: #b8868b;     
             --calendar-badge-bg: #d9bec1; 
-            --highlight-bg: #ebdcdc;    /* 螢光筆畫重點顏色（淺灰粉色） */
+            --highlight-bg: #f7cbcf;    /* 螢光筆畫重點顏色（淺灰粉色） */
         }
 
         * {
@@ -267,7 +267,13 @@
             margin: 0 auto;
         }
 
-        ol, ul {
+        /* 一般條列維持原本的圓點 */
+        .content-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .content-box ol {
             padding-left: 20px;
         }
 
@@ -275,88 +281,68 @@
             margin-bottom: 10px;
         }
 
-        /* 展開收納小三角 (Details / Summary 樣式) */
+        /* 無框的收納摺疊區塊 (Details / Summary) */
         details {
             margin-top: 15px;
-            border: 1px solid var(--border-color);
-            background: #fffcf9;
-            transition: all 0.3s ease;
-        }
-
-        details[open] {
-            border-color: var(--accent-color);
+            margin-bottom: 10px;
+            border: none;
+            background: transparent;
         }
 
         summary {
             font-weight: 600;
             color: var(--main-color);
-            padding: 12px 15px;
+            padding: 6px 0;
             cursor: pointer;
-            list-style: none; /* 隱藏預設三角形 */
+            list-style: none; /* 隱藏瀏覽器預設三角形 */
             position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px dashed var(--border-color);
         }
 
-        /* 自訂箭頭圖示 */
-        summary::after {
-            content: "▶";
-            font-size: 0.75rem;
+        /* summary 前面加上小三角符號，取代原本的圓點 */
+        summary::before {
+            content: "▶ ";
+            font-size: 0.7rem;
             color: var(--accent-color);
+            margin-right: 6px;
             transition: transform 0.3s ease;
+            display: inline-block;
         }
 
-        details[open] summary::after {
+        /* 當展開時讓小三角旋轉向下 */
+        details[open] summary::before {
             transform: rotate(90deg);
         }
 
+        /* 隱藏右側原本的箭頭（因為改用左側小三角了） */
+        summary::after {
+            content: "";
+        }
+
         .details-content {
-            padding: 15px 20px;
-            border-top: 1px solid var(--border-color);
-            background: #fff;
+            padding: 10px 0 5px 15px;
+            background: transparent;
             font-size: 0.9rem;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+        /* 展開內容裡的清單使用一般圓點 */
+        .details-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
         }
 
-        .card {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            padding: 25px 20px;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        /* 「主題一覽」專用：不帶任何點點 */
+        .no-bullet-list {
+            list-style: none !important;
+            padding-left: 0 !important;
         }
 
-        .card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(184, 134, 139, 0.12);
-        }
-
-        .card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 12px;
-            color: var(--main-color);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-        }
-
-        .card p {
-            font-size: 0.88rem;
-            color: #735e5b;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-weight: 600;
-            color: var(--accent-color);
-            font-size: 0.95rem;
+        .no-bullet-list li {
+            padding-left: 0 !important;
+            margin-bottom: 8px;
         }
 
         /* 排單狀況提示文字樣式 */
@@ -551,7 +537,6 @@
             .magazine-grid { grid-template-columns: repeat(2, 1fr); gap: 15px 12px; }
             
             .content-box { padding: 20px 12px; }
-            .card { padding: 16px 12px; }
             
             .divider-image { max-width: 300px; }
             .calendar-grid { gap: 3px; }
@@ -629,7 +614,7 @@
                     <li>發布文章標註：044</li>
                 </ul>
                 
-                <!-- 關於退款小三角 -->
+                <!-- 關於退款收納 -->
                 <details>
                     <summary>關於退款</summary>
                     <div class="details-content">
@@ -640,7 +625,7 @@
                     </div>
                 </details>
 
-                <!-- 關於交稿小三角 -->
+                <!-- 關於交稿收納 -->
                 <details>
                     <summary>關於交稿</summary>
                     <div class="details-content">
@@ -668,7 +653,7 @@
                     <li><span class="highlight">禁止第三方交易。</span></li>
                 </ul>
 
-                <!-- 付款方式小三角 -->
+                <!-- 付款方式收納 -->
                 <details>
                     <summary>付款方式</summary>
                     <div class="details-content">
@@ -690,20 +675,20 @@
             <div class="content-box">
                 <ul>
                     <li><strong>驚喜包：</strong><br>什麼都不指定，除字數外皆由我決定。</li>
-                    <li><strong>一般委託：</strong><br>配圖、配歌曲、paro、tag，或者有大致情節發展要求、主題走向等皆可。</li>
+                    <li><strong>一般委託：</strong><br>配圖、配歌曲、paro、tag，或者有大致情節發展要求, 主題走向等皆可。</li>
                     <li><strong>噗轉主題：</strong><br>在噗浪開過的文字轉蛋台，有興趣也可以委託這些項目。<br>計價方式同此網站，並非轉蛋價格。僅做為委託主題參考。</li>
                 </ul>
 
-                <!-- 主題一覽小三角 -->
+                <!-- 主題一覽收納（無點點） -->
                 <details>
                     <summary>主題一覽</summary>
                     <div class="details-content">
-                        <ul>
+                        <ul class="no-bullet-list">
                             <li>💤 春睏、秋乏、夏倦、冬眠</li>
                             <li>🌬️ 普魯斯特效應</li>
                             <li>📖 童話故事抽抽樂</li>
                             <li>🏠 一屋、兩人、三餐、四季</li>
-                            <li>⛅️ 晴時多雲偶陣雨：http;//...</li>
+                            <li>⛅️ 晴時多雲偶陣雨</li>
                         </ul>
                     </div>
                 </details>
