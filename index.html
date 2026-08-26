@@ -14,6 +14,7 @@
             --accent-color: #8c4a4a;    /* 古典暗紅 */
             --gold-accent: #b89768;     /* 復古金邊 */
             --border-color: #dfd3c3;    /* 復古米灰邊框 */
+            --mauve-color: #b8868b;     /* 藕粉色 */
         }
 
         * {
@@ -32,29 +33,14 @@
             background-size: 24px 24px;
         }
 
-        /* 頂部橫幅照片 */
-        .banner-container {
-            width: 100%;
-            max-height: 280px;
-            overflow: hidden;
-            border-bottom: 3px solid var(--gold-accent);
-        }
-
-        .banner-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* 主容器：卷軸信札質感，帶有古典層次邊框 */
+        /* 主容器：卷軸信札質感 */
         .wrapper {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 40px auto 50px;
             background: var(--container-bg);
             border: 1px solid var(--border-color);
             box-shadow: 0 15px 40px rgba(59, 48, 42, 0.12), inset 0 0 50px rgba(223, 211, 195, 0.3);
-            padding: 60px 50px;
+            padding: 40px 50px 60px;
             position: relative;
         }
 
@@ -76,38 +62,89 @@
             pointer-events: none;
         }
 
-        /* 標頭與大頭貼 */
+        /* 頂部橫幅區塊（無邊框、純圖片） */
+        .banner-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 50px; /* 預留下方大頭貼與標題的空間 */
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+
+        /* 大頭貼跨在橫幅底線上 */
+        .avatar-img {
+            position: absolute;
+            left: 40px;
+            bottom: -35px; /* 讓大頭貼中心剛好切在橫幅底線 */
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(59, 48, 42, 0.2);
+            z-index: 5;
+            background: #fff;
+        }
+
+        /* 標頭與排版區塊 */
         header {
-            text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             position: relative;
             z-index: 2;
+            padding-left: 10px;
         }
 
-        .avatar-img {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            display: block;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(59, 48, 42, 0.15);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+        /* 「失」字：在橫幅上、大頭貼右側 */
+        .title-shi {
+            position: absolute;
+            left: 175px;
+            top: -42px;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--main-color);
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
+            line-height: 1;
         }
 
-        .subtitle {
-            font-size: 0.9rem;
+        /* 「樂園」與英文區塊：在橫幅下方 */
+        .title-lower-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* 「樂園」二字：藕粉色 */
+        .title-leyuan {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--mauve-color);
+            letter-spacing: 0.2em;
+            line-height: 1.2;
+        }
+
+        /* 中間直線隔板 */
+        .divider-line {
+            font-size: 1.5rem;
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        /* 英文長句：限制寬度自動分兩行 */
+        .subtitle-english {
+            font-size: 0.82rem;
             color: #736357;
             font-style: italic;
-            max-width: 650px;
-            margin: 0 auto 25px;
-            line-height: 1.8;
+            max-width: 480px;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
         }
 
         /* 6項目的目錄導覽列 */
@@ -160,7 +197,7 @@
             font-size: 0.85rem;
         }
 
-        /* 內容文字框 (卷軸內文區塊) */
+        /* 內容文字框 */
         .content-box {
             background: #fff;
             padding: 35px;
@@ -260,17 +297,23 @@
 </head>
 <body>
 
-    <!-- 頂部橫幅照片 -->
-    <div class="banner-container">
-        <img src="橫幅.jpeg" alt="失樂園橫幅">
-    </div>
-
     <div class="wrapper">
-        <header>
-            <!-- 大頭貼照片 (無圓框) -->
+        <!-- 頂部橫幅與大頭貼組合 -->
+        <div class="banner-container">
+            <img src="橫幅.jpeg" alt="失樂園橫幅">
             <img src="大頭貼.png" alt="大頭貼" class="avatar-img">
-            <h1>失樂園</h1>
-            <div class="subtitle">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
+        </div>
+
+        <header>
+            <!-- 「失」字跨在橫幅右側 -->
+            <div class="title-shi">失</div>
+
+            <!-- 下方「樂園」與英文長句排版 -->
+            <div class="title-lower-row">
+                <div class="title-leyuan">樂園</div>
+                <div class="divider-line">｜</div>
+                <div class="subtitle-english">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
+            </div>
         </header>
 
         <!-- 6個項目的目錄 -->
@@ -288,7 +331,7 @@
             <h2>注意事項</h2>
             <div class="content-box">
                 <ul>
-                    <li><strong>接單範圍：</strong>原創小說、同人二創、角色對話、情感散文。</li>
+                    <li><strong>接單範圍：</strong>原創小說、同人二創、角色對話、情感散文、世界觀設定。</li>
                     <li><strong>版權說明：</strong>完稿後著作權仍屬作者所有，委託人可自由公開、閱讀與非營利使用。</li>
                     <li><strong>修改次數：</strong>草稿與完稿階段皆包含指定次數的微調，大改需酌收費用。</li>
                 </ul>
@@ -349,7 +392,6 @@
             <h2>範例</h2>
             <div class="content-box" style="text-align: center;">
                 <p>此處可放置您的過往文字作品試閱連結或截圖文字。</p>
-                <!-- 範例連結範例：<a href="你的作品連結" target="_blank" class="btn" style="margin-top:10px;">觀看更多作品</a> -->
             </div>
         </section>
 
@@ -358,7 +400,6 @@
             <h2>排單</h2>
             <div class="content-box" style="text-align: center;">
                 <p>目前的委託進度與可接單狀態：<strong>目前可預約排單</strong></p>
-                <!-- 若有使用 Notion 進度表或 Trello，可直接嵌入連結 -->
             </div>
         </section>
 
@@ -366,7 +407,6 @@
         <section id="contact" class="contact-section">
             <h2>開啟委託</h2>
             <p style="font-size: 0.9rem; color: #594a40; margin-bottom: 10px;">如果您有任何想訴說的故事，歡迎隨時與我聯繫。</p>
-            <!-- 請將下面的網址換成你的噗浪、X或Google表單 -->
             <a href="https://www.plurk.com/" target="_blank" class="btn">前往委託表單 / 噗浪聯繫</a>
         </section>
 
