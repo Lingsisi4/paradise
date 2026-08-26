@@ -31,20 +31,117 @@
             letter-spacing: 0.08em;
             background-image: radial-gradient(var(--border-color) 0.5px, transparent 0.5px);
             background-size: 24px 24px;
+            overflow-x: hidden;
         }
 
-        /* 主容器：卷軸信札質感 */
+        /* 1. 滿版橫幅（在卷軸框外面） */
+        .full-banner {
+            width: 100vw;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            margin-left: calc(-50vw + 50%);
+        }
+
+        .full-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 2. 標題與大頭貼對齊區塊（在卷軸框外面，讓整體視覺更開闊） */
+        .header-outer-container {
+            max-width: 900px;
+            margin: -35px auto 30px auto; /* 讓大頭貼自然與橫幅交疊 */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* 左側：透明大頭貼（無白底、無陰影、放大） */
+        .avatar-img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain; /* 確保透明 PNG 不失真 */
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            flex-shrink: 0;
+        }
+
+        /* 右側：「失樂園」與英文對齊群組 */
+        .title-group {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px; /* 與大頭貼上下高度完美對齊 */
+        }
+
+        /* 第一行：「失」字 */
+        .title-shi {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--main-color);
+            letter-spacing: 0.1em;
+            line-height: 1;
+        }
+
+        /* 第二行：「樂園」+ 隔板 + 英文長句 */
+        .title-lower-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* 「樂園」二字：藕粉色 */
+        .title-leyuan {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--mauve-color);
+            letter-spacing: 0.2em;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        /* 中間直線隔板 */
+        .divider-line {
+            font-size: 1.4rem;
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        /* 英文長句 */
+        .subtitle-english {
+            font-size: 0.78rem;
+            color: #736357;
+            font-style: italic;
+            max-width: 400px;
+            line-height: 1.5;
+            letter-spacing: 0.04em;
+        }
+
+        /* 3. 卷軸框本體（從目錄條開始包在裡面） */
         .wrapper {
             max-width: 900px;
-            margin: 40px auto 50px;
+            margin: 0 auto 50px auto;
             background: var(--container-bg);
             border: 1px solid var(--border-color);
             box-shadow: 0 15px 40px rgba(59, 48, 42, 0.12), inset 0 0 50px rgba(223, 211, 195, 0.3);
-            padding: 40px 50px 60px;
+            padding: 50px 40px;
             position: relative;
         }
 
-        /* 卷軸雙層裝飾框線 */
         .wrapper::before {
             content: "";
             position: absolute;
@@ -60,91 +157,6 @@
             top: 14px; left: 14px; right: 14px; bottom: 14px;
             border: 1px dashed var(--border-color);
             pointer-events: none;
-        }
-
-        /* 頂部結構容器：用來精準定位大頭貼與標題 */
-        .top-section {
-            position: relative;
-            margin-bottom: 75px; /* 保留空間給下方「樂園」那一排文字 */
-        }
-
-        /* 橫幅照片 */
-        .banner-container {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .banner-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            border: none;
-        }
-
-        /* 大頭貼：強制固定尺寸與跨線位置 */
-        .avatar-img {
-            position: absolute;
-            left: 35px;
-            bottom: -45px; /* 剛好卡在橫幅底線上 */
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 0; /* 不要圓形 */
-            box-shadow: 0 4px 15px rgba(59, 48, 42, 0.2);
-            z-index: 10;
-            background: #fff;
-            border: 2px solid var(--container-bg);
-        }
-
-        /* 「失」字：在橫幅上方、大頭貼右側 */
-        .title-shi {
-            position: absolute;
-            left: 165px;
-            bottom: 12px; /* 貼在橫幅上方邊緣 */
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--main-color);
-            letter-spacing: 0.1em;
-            line-height: 1;
-            z-index: 10;
-        }
-
-        /* 樂園與英文區塊：在橫幅下方 */
-        .title-lower-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-            padding-left: 165px; /* 與上方「失」字對齊 */
-        }
-
-        /* 「樂園」二字：藕粉色 */
-        .title-leyuan {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--mauve-color);
-            letter-spacing: 0.2em;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-
-        /* 中間直線隔板 */
-        .divider-line {
-            font-size: 1.5rem;
-            color: var(--border-color);
-            font-weight: 300;
-        }
-
-        /* 英文長句：自動折行，限制寬度 */
-        .subtitle-english {
-            font-size: 0.8rem;
-            color: #736357;
-            font-style: italic;
-            max-width: 420px;
-            line-height: 1.6;
-            letter-spacing: 0.05em;
         }
 
         /* 6項目的目錄導覽列 */
@@ -197,7 +209,6 @@
             font-size: 0.85rem;
         }
 
-        /* 內容文字框 */
         .content-box {
             background: #fff;
             padding: 35px;
@@ -215,7 +226,6 @@
             margin-bottom: 10px;
         }
 
-        /* 委託項目卡片網格 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -257,7 +267,6 @@
             font-size: 0.95rem;
         }
 
-        /* 聯絡區塊 */
         .contact-section {
             text-align: center;
             background: #f4eee3;
@@ -293,29 +302,71 @@
             position: relative;
             z-index: 2;
         }
+
+        /* 4. 手機響應式優化（RWD 專用設定：防止手機畫面跑版） */
+        @media (max-width: 768px) {
+            .full-banner {
+                height: 160px;
+            }
+            .header-outer-container {
+                margin-top: -25px;
+                padding: 0 15px;
+            }
+            .header-layout {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .title-group {
+                align-items: center;
+                min-height: auto;
+                gap: 12px;
+            }
+            .title-lower-row {
+                justify-content: center;
+                gap: 10px;
+            }
+            .subtitle-english {
+                max-width: 100%;
+                text-align: center;
+            }
+            .wrapper {
+                padding: 30px 20px;
+                margin: 0 10px 30px 10px;
+            }
+            nav {
+                gap: 12px 18px;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <!-- 頂部區塊：包含橫幅、大頭貼、「失」字 -->
-        <div class="top-section">
-            <div class="banner-container">
-                <img src="橫幅.jpeg" alt="失樂園橫幅">
-            </div>
+    <!-- 1. 滿版橫幅（在卷軸框外面，貼齊螢幕兩側） -->
+    <div class="full-banner">
+        <img src="橫幅.jpeg" alt="失樂園橫幅">
+    </div>
+
+    <!-- 2. 大頭貼與標題區塊（在卷軸框外面，完美對齊） -->
+    <div class="header-outer-container">
+        <div class="header-layout">
             <img src="大頭貼.png" alt="大頭貼" class="avatar-img">
-            <div class="title-shi">失</div>
+            <div class="title-group">
+                <div class="title-shi">失</div>
+                <div class="title-lower-row">
+                    <div class="title-leyuan">樂園</div>
+                    <div class="divider-line">｜</div>
+                    <div class="subtitle-english">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- 下方標題列：「樂園」與英文長句 -->
-        <div class="title-lower-row">
-            <div class="title-leyuan">樂園</div>
-            <div class="divider-line">｜</div>
-            <div class="subtitle-english">“ Then wilt thou not be loth to leave this Paradise, but shalt possess A Paradise within thee, happier far. ”</div>
-        </div>
-
+    <!-- 3. 卷軸框本體（從目錄條開始包在裡面） -->
+    <div class="wrapper">
         <!-- 6個項目的目錄 -->
-        <nav style="margin-top: 45px;">
+        <nav>
             <a href="#rules">注意事項</a>
             <a href="#pricing-table">價目表</a>
             <a href="#items">委託項目</a>
@@ -415,4 +466,3 @@
 
 </body>
 </html>
-
