@@ -678,59 +678,57 @@
     </div>
 
     <!-- 頁面切換與月曆連動控制 Script -->
-    <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbx4LpPvftcbMvH3RFAKFcfCerfXSr3BS0hoqtWWgBXVRb3L9RKIli5lAIwqAgtuuJls/exec";
+<script>
+    let scheduleData = [];
+    let today = new Date();
+    let currentYear = today.getFullYear();
+    let currentMonth = today.getMonth(); // 0-11
 
-        let scheduleData = [];
-        let today = new Date();
-        let currentYear = today.getFullYear();
-        let currentMonth = today.getMonth(); // 0-11
+    // 頁面切換函數
+    function switchPage(pageName) {
+        const pages = document.querySelectorAll('.page-content');
+        pages.forEach(p => p.classList.remove('active'));
 
-        // 頁面切換函數
-        function switchPage(pageName) {
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page-' + pageName);
+        if (target) {
+            target.classList.add('active');
+        }
 
-            const target = document.getElementById('page-' + pageName);
-            if (target) {
-                target.classList.add('active');
-            }
-
-            const dividerSection = document.getElementById('home-divider-section');
+        const dividerSection = document.getElementById('home-divider-section');
+        if (dividerSection) {
             if (pageName === 'home') {
                 dividerSection.style.display = 'block';
             } else {
                 dividerSection.style.display = 'none';
                 if (pageName === 'schedule') {
-                    loadScheduleData(); // 當切到排單頁面時自動抓取最新試算表資料
+                    loadScheduleData(); // 當切換到排單頁面時自動載入資料
                 }
             }
-
-            window.scrollTo({ top: 200, behavior: 'smooth' });
         }
 
-        // 從 Google 試算表抓取資料
-        function loadScheduleData() {
-            if(API_URL.includes("你的部署網址")) {
-                console.log("尚未設定 Google 試算表 API 網址");
-                renderCalendar();
-                return;
-            }
-            
-            fetch(API_URL)
-                .then(res => res.json())
-                .then(data => {
-                    scheduleData = data;
-                    renderCalendar();
-                })
-                .catch(err => {
-                    console.error("無法取得排單資料", err);
-                    renderCalendar();
-                });
-        }
-        // 網頁一打開就直接抓取試算表資料
-        loadScheduleData();
+        window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
 
+    // 直接使用內建的排單資料（免除 Google 試算表連線問題）
+    function loadScheduleData() {
+        // 這裡直接寫死你的交稿日期與資料，以後要新增或修改直接在這裡改！
+        const directData = [
+            { "date": "2026-08-23", "client": "D***9***", "count": 1 },
+            { "date": "2026-08-27", "client": "B**9***", "count": 1 },
+            { "date": "2026-08-30", "client": "T***3***", "count": 1 }
+        ];
+        
+        scheduleData = directData;
+        
+        // 確保 renderCalendar 函數存在時才執行，避免報錯
+        if (typeof renderCalendar === 'function') {
+            renderCalendar(); 
+        }
+    }
+
+    // 網頁一打開就直接執行載入資料
+    loadScheduleData();
+</script>
         // 渲染月曆
         function renderCalendar() {
             const titleEl = document.getElementById('calendar-title');
