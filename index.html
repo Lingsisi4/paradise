@@ -50,7 +50,7 @@
             display: block;
         }
 
-        /* 2. 標題與大頭貼對齊區塊（桌機與平板版樣式） */
+        /* 2. 標題與大頭貼對齊區塊 */
         .header-outer-container {
             max-width: 900px;
             margin: -35px auto 30px auto; 
@@ -66,7 +66,6 @@
             gap: 20px;
         }
 
-        /* 左側：透明大頭貼 */
         .avatar-img {
             width: 150px;
             height: 150px;
@@ -77,7 +76,6 @@
             flex-shrink: 0;
         }
 
-        /* 右側：「失樂園」與英文對齊群組 */
         .title-group {
             flex-grow: 1;
             display: flex;
@@ -86,7 +84,6 @@
             min-height: 140px; 
         }
 
-        /* 第一行：「失」字 */
         .title-shi {
             font-size: 2.5rem;
             font-weight: 700;
@@ -95,7 +92,6 @@
             line-height: 1;
         }
 
-        /* 第二行：「樂園」+ 隔板 + 英文長句 */
         .title-lower-row {
             display: flex;
             align-items: center;
@@ -103,7 +99,6 @@
             flex-wrap: wrap;
         }
 
-        /* 「樂園」二字：藕粉色 */
         .title-leyuan {
             font-size: 2.2rem;
             font-weight: 700;
@@ -113,14 +108,12 @@
             white-space: nowrap;
         }
 
-        /* 中間直線隔板 */
         .divider-line {
             font-size: 1.4rem;
             color: var(--border-color);
             font-weight: 300;
         }
 
-        /* 英文長句 */
         .subtitle-english {
             font-size: 0.78rem;
             color: #736357;
@@ -158,8 +151,8 @@
             pointer-events: none;
         }
 
-        /* 6項目的目錄導覽列 */
-        nav {
+        /* 傳統底部文字導覽列（放在各頁下方） */
+        .nav-footer-bar {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -167,27 +160,92 @@
             padding: 18px 0;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 50px;
+            margin-top: 45px;
+            margin-bottom: 35px;
             font-size: 0.92rem;
             position: relative;
             z-index: 2;
         }
 
-        nav a {
+        .nav-footer-bar a {
             text-decoration: none;
             color: var(--main-color);
+            cursor: pointer;
             transition: color 0.3s;
-            position: relative;
         }
 
-        nav a:hover {
+        .nav-footer-bar a:hover {
             color: var(--accent-color);
         }
 
-        section {
-            margin-bottom: 55px;
+        /* 首頁 2欄 × 3排 的圖片目錄格線設計 */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 25px;
+            padding: 10px 20px 20px 20px;
             position: relative;
             z-index: 2;
+        }
+
+        .menu-item {
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(59, 48, 42, 0.08);
+            display: block;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .menu-item:hover img {
+            border-color: var(--gold-accent);
+        }
+
+        .menu-item span {
+            font-size: 1rem;
+            color: var(--main-color);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        /* 內容區塊頁面切換控制 */
+        .page-content {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* 返回首頁按鈕（讓各分頁內都可以輕鬆回首頁選單） */
+        .back-home-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            font-size: 0.88rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+        }
+
+        .back-home-btn:hover {
+            text-decoration: underline;
         }
 
         h2 {
@@ -227,7 +285,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
@@ -302,9 +360,7 @@
             z-index: 2;
         }
 
-        /* ==========================================
-           手機專屬優化：讓手機也能像平板一樣「靠左並排」
-           ========================================== */
+        /* 手機與平板響應式微調 */
         @media (max-width: 768px) {
             .full-banner {
                 height: 150px;
@@ -313,7 +369,6 @@
                 margin-top: -25px;
                 padding: 0 15px;
             }
-            /* 強制維持左右並排靠左，不上下置中 */
             .header-layout {
                 flex-direction: row;
                 align-items: center;
@@ -321,7 +376,7 @@
                 gap: 12px;
             }
             .avatar-img {
-                width: 90px; /* 在手機上稍微縮小一點點以適應寬度 */
+                width: 90px;
                 height: 90px;
             }
             .title-group {
@@ -341,7 +396,7 @@
                 font-size: 1rem;
             }
             .subtitle-english {
-                font-size: 0.65rem; /* 縮小英文讓它在手機上能完美並排塞入 */
+                font-size: 0.65rem;
                 line-height: 1.3;
                 max-width: 210px;
             }
@@ -349,7 +404,14 @@
                 padding: 30px 15px;
                 margin: 0 10px 30px 10px;
             }
-            nav {
+            .menu-grid {
+                gap: 20px 15px;
+                padding: 5px;
+            }
+            .menu-item img {
+                height: 130px;
+            }
+            .nav-footer-bar {
                 gap: 10px 15px;
                 font-size: 0.82rem;
             }
@@ -380,18 +442,40 @@
 
     <!-- 3. 卷軸框本體 -->
     <div class="wrapper">
-        <!-- 6個項目的目錄 -->
-        <nav>
-            <a href="#rules">注意事項</a>
-            <a href="#pricing-table">價目表</a>
-            <a href="#items">委託項目</a>
-            <a href="#process">委託流程</a>
-            <a href="#samples">範例</a>
-            <a href="#schedule">排單</a>
-        </nav>
 
-        <!-- 1. 注意事項 -->
-        <section id="rules">
+        <!-- 首頁：2欄 × 3排的圖片目錄選單 -->
+        <div id="page-home" class="page-content active">
+            <div class="menu-grid">
+                <a class="menu-item" onclick="switchPage('rules')">
+                    <img src="注意事項.png" alt="注意事項">
+                    <span>注意事項</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('pricing')">
+                    <img src="價目表.png" alt="價目表">
+                    <span>價目表</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('items')">
+                    <img src="委託項目.png" alt="委託項目">
+                    <span>委託項目</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('process')">
+                    <img src="委託流程.png" alt="委託流程">
+                    <span>委託流程</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('samples')">
+                    <img src="範例.png" alt="範例">
+                    <span>範例</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('schedule')">
+                    <img src="排單.png" alt="排單">
+                    <span>排單</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 1. 注意事項 頁面 -->
+        <div id="page-rules" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>注意事項</h2>
             <div class="content-box">
                 <ul>
@@ -400,10 +484,20 @@
                     <li><strong>修改次數：</strong>草稿與完稿階段皆包含指定次數的微調，大改需酌收費用。</li>
                 </ul>
             </div>
-        </section>
+            <!-- 底部傳統導覽列 -->
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 2. 價目表 -->
-        <section id="pricing-table">
+        <!-- 2. 價目表 頁面 -->
+        <div id="page-pricing" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>價目表</h2>
             <div class="content-box">
                 <p style="text-align: center; margin-bottom: 15px;">基本計價以千字為基準，詳細試算歡迎私訊討論：</p>
@@ -413,12 +507,21 @@
                     <li>急件加成：總金額 × 1.5 倍</li>
                 </ul>
             </div>
-        </section>
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 3. 委託項目 -->
-        <section id="items">
+        <!-- 3. 委託項目 頁面 -->
+        <div id="page-items" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>委託項目</h2>
-            <div class="grid">
+            <div class="grid" style="margin-bottom: 20px;">
                 <div class="card">
                     <h3>短篇小說創作</h3>
                     <p>依據您提供的核心梗、人設或對話，量身打造專屬短篇故事。</p>
@@ -435,10 +538,19 @@
                     <div class="price">NT$ 600 起</div>
                 </div>
             </div>
-        </section>
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 4. 委託流程 -->
-        <section id="process">
+        <!-- 4. 委託流程 頁面 -->
+        <div id="page-process" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>委託流程</h2>
             <div class="content-box">
                 <ol>
@@ -449,35 +561,82 @@
                     <li><strong>完稿尾款：</strong> 交付完稿、支付尾款後發送全文檔案。</li>
                 </ol>
             </div>
-        </section>
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 5. 範例 -->
-        <section id="samples">
+        <!-- 5. 範例 頁面 -->
+        <div id="page-samples" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>範例</h2>
             <div class="content-box" style="text-align: center;">
                 <p>此處可放置您的過往文字作品試閱連結或截圖文字。</p>
             </div>
-        </section>
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 6. 排單 -->
-        <section id="schedule">
+        <!-- 6. 排單 頁面 -->
+        <div id="page-schedule" class="page-content">
+            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>排單</h2>
             <div class="content-box" style="text-align: center;">
                 <p>目前的委託進度與可接單狀態：<strong>目前可預約排單</strong></p>
             </div>
-        </section>
+            <div class="nav-footer-bar">
+                <a onclick="switchPage('rules')">注意事項</a>
+                <a onclick="switchPage('pricing')">價目表</a>
+                <a onclick="switchPage('items')">委託項目</a>
+                <a onclick="switchPage('process')">委託流程</a>
+                <a onclick="switchPage('samples')">範例</a>
+                <a onclick="switchPage('schedule')">排單</a>
+            </div>
+        </div>
 
-        <!-- 聯絡與表單 -->
-        <section id="contact" class="contact-section">
-            <h2>開啟委託</h2>
-            <p style="font-size: 0.9rem; color: #594a40; margin-bottom: 10px;">如果您有任何想訴說的故事，歡迎隨時與我聯繫。</p>
-            <a href="https://www.plurk.com/" target="_blank" class="btn">前往委託表單 / 噗浪聯繫</a>
-        </section>
+        <!-- 聯絡與表單（你可以選擇要不要放在各頁面或保留） -->
+        <div style="margin-top: 40px;">
+            <div class="contact-section">
+                <h2>開啟委託</h2>
+                <p style="font-size: 0.9rem; color: #594a40; margin-bottom: 10px;">如果您有任何想訴說的故事，歡迎隨時與我聯繫。</p>
+                <a href="https://www.plurk.com/" target="_blank" class="btn">前往委託表單 / 噗浪聯繫</a>
+            </div>
+        </div>
 
         <footer>
             <p>&copy; 2026 失樂園. All Rights Reserved.</p>
         </footer>
     </div>
 
+    <!-- 頁面切換控制的小 JavaScript -->
+    <script>
+        function switchPage(pageName) {
+            // 隱藏所有分頁
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // 顯示目標分頁
+            const target = document.getElementById('page-' + pageName);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // 讓卷軸捲動到頂部，閱讀體驗更好
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+    </script>
+
 </body>
 </html>
+
