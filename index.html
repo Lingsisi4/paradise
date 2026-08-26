@@ -16,6 +16,7 @@
             --border-color: #e6d7d5;    
             --mauve-color: #b8868b;     
             --calendar-badge-bg: #d9bec1; 
+            --highlight-bg: #ebdcdc;    /* 螢光筆畫重點顏色（淺灰粉色） */
         }
 
         * {
@@ -33,6 +34,13 @@
             background-image: radial-gradient(var(--border-color) 0.5px, transparent 0.5px);
             background-size: 24px 24px;
             overflow-x: hidden;
+        }
+
+        /* 螢光筆畫重點樣式 */
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 0.1em 0.3em;
+            border-radius: 2px;
         }
 
         /* 1. 滿版橫幅 */
@@ -265,6 +273,49 @@
 
         li {
             margin-bottom: 10px;
+        }
+
+        /* 展開收納小三角 (Details / Summary 樣式) */
+        details {
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+            background: #fffcf9;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            border-color: var(--accent-color);
+        }
+
+        summary {
+            font-weight: 600;
+            color: var(--main-color);
+            padding: 12px 15px;
+            cursor: pointer;
+            list-style: none; /* 隱藏預設三角形 */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* 自訂箭頭圖示 */
+        summary::after {
+            content: "▶";
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .details-content {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+            font-size: 0.9rem;
         }
 
         .grid {
@@ -568,10 +619,37 @@
             <h2>注意事項</h2>
             <div class="content-box">
                 <ul>
-                    <li><strong>接單範圍：</strong>原創小說、同人二創、角色對話、情感散文、世界觀設定。</li>
-                    <li><strong>版權說明：</strong>完稿後著作權仍屬作者所有，委託人可自由公開、閱讀與非營利使用。</li>
-                    <li><strong>修改次數：</strong>草稿與完稿階段皆包含指定次數的微調，大改需酌收費用。</li>
+                    <li>請確認喜歡文風再進行委託，不接受使用有關<span class="highlight">「風格不喜歡」</span>的理由退稿。</li>
+                    <li>字數統計以Google文件為主。</li>
+                    <li>夢原向／同人／二創／原創；BG／BL／GL／皆可。GB視情況接。</li>
+                    <li>工期3天起，單篇不超過10天。</li>
+                    <li>有點取名廢⋯⋯需要取篇名的話請<span class="highlight">提前</span>告訴我><否則以無題為主，委託人可自由取名。</li>
+                    <li>委託預設已成年。</li>
+                    <li>文章預設可碼掉姓名後作為範例展示，介意者需提前告知。</li>
+                    <li>發布文章標註：044</li>
                 </ul>
+                
+                <!-- 關於退款小三角 -->
+                <details>
+                    <summary>關於退款</summary>
+                    <div class="details-content">
+                        <ul>
+                            <li>如需排單，未排到前可無條件退全款。</li>
+                            <li>動筆後未完稿僅退全款的<span class="highlight">80%</span>。</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- 關於交稿小三角 -->
+                <details>
+                    <summary>關於交稿</summary>
+                    <div class="details-content">
+                        <ul>
+                            <li>習慣使用噗浪貼，如需其他網站（例如Telegraph）請<span class="highlight">提前</span>告知。</li>
+                            <li>如需使用Google文件，收稿後請自行另存，我方<span class="highlight">3天後會刪除</span>檔案。</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
             <div class="bottom-back-container">
                 <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
@@ -582,12 +660,24 @@
         <div id="page-pricing" class="page-content">
             <h2>價目表</h2>
             <div class="content-box">
-                <p style="text-align: center; margin-bottom: 15px;">基本計價以千字為基準，詳細試算歡迎私訊討論：</p>
                 <ul>
-                    <li>基礎文字潤飾：NT$ 600 起</li>
-                    <li>標準短篇創作：NT$ 1,000 起 / 千字</li>
-                    <li>急件加成：總金額 × 1.5 倍</li>
+                    <li>驚喜包：0.3／字</li>
+                    <li>一般委託：0.4／字</li>
+                    <li>急單（紀念日、生賀、馬上就想看到文之類的情況）：依期限調整為0.6～0.8／字。</li>
+                    <li>500字起委，以50、100的倍數增加，單篇上限為4000字。超過字數範圍不加價。</li>
+                    <li><span class="highlight">禁止第三方交易。</span></li>
                 </ul>
+
+                <!-- 付款方式小三角 -->
+                <details>
+                    <summary>付款方式</summary>
+                    <div class="details-content">
+                        <ul>
+                            <li>匯款：提供中信帳戶，<span class="highlight">不收無卡</span>。</li>
+                            <li>噗幣：和現金比為1：50</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
             <div class="bottom-back-container">
                 <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
@@ -597,22 +687,26 @@
         <!-- 3. 委託項目 頁面 -->
         <div id="page-items" class="page-content">
             <h2>委託項目</h2>
-            <div class="grid" style="margin-bottom: 20px;">
-                <div class="card">
-                    <h3>短篇小說創作</h3>
-                    <p>依據您提供的核心梗、人設或對話，量身打造專屬短篇故事。</p>
-                    <div class="price">NT$ 1,000 起 / 千字</div>
-                </div>
-                <div class="card">
-                    <h3>角色對話與劇本</h3>
-                    <p>專注於角色互動張力、情感拉扯與細緻的對白編排。</p>
-                    <div class="price">NT$ 800 起</div>
-                </div>
-                <div class="card">
-                    <h3>設定潤飾與梳理</h3>
-                    <p>協助將零碎的世界觀、背景故事轉化為流暢優美的文字。</p>
-                    <div class="price">NT$ 600 起</div>
-                </div>
+            <div class="content-box">
+                <ul>
+                    <li><strong>驚喜包：</strong><br>什麼都不指定，除字數外皆由我決定。</li>
+                    <li><strong>一般委託：</strong><br>配圖、配歌曲、paro、tag，或者有大致情節發展要求、主題走向等皆可。</li>
+                    <li><strong>噗轉主題：</strong><br>在噗浪開過的文字轉蛋台，有興趣也可以委託這些項目。<br>計價方式同此網站，並非轉蛋價格。僅做為委託主題參考。</li>
+                </ul>
+
+                <!-- 主題一覽小三角 -->
+                <details>
+                    <summary>主題一覽</summary>
+                    <div class="details-content">
+                        <ul>
+                            <li>💤 春睏、秋乏、夏倦、冬眠</li>
+                            <li>🌬️ 普魯斯特效應</li>
+                            <li>📖 童話故事抽抽樂</li>
+                            <li>🏠 一屋、兩人、三餐、四季</li>
+                            <li>⛅️ 晴時多雲偶陣雨：http;//...</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
             <div class="bottom-back-container">
                 <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
