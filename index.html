@@ -10,10 +10,10 @@
         :root {
             --bg-color: #f7f3ee;        
             --container-bg: #fffcf9;    
-            --main-color: #3b302a;      
-            --accent-color: #8c4a4a;    
-            --gold-accent: #b89768;     
-            --border-color: #dfd3c3;    
+            --main-color: #4a3b3a;      /* 微調主字體色，帶點柔和感 */
+            --accent-color: #b8868b;    /* 藕粉/灰粉主調 */
+            --gold-accent: #d1a3a6;     /* 點綴粉金色 */
+            --border-color: #e6d7d5;    /* 柔和的粉灰邊框 */
             --mauve-color: #b8868b;     /* 藕粉色 */
         }
 
@@ -116,7 +116,7 @@
 
         .subtitle-english {
             font-size: 0.78rem;
-            color: #736357;
+            color: #8c7674;
             font-style: italic;
             max-width: 400px;
             line-height: 1.5;
@@ -129,7 +129,7 @@
             margin: 0 auto 50px auto;
             background: var(--container-bg);
             border: 1px solid var(--border-color);
-            box-shadow: 0 15px 40px rgba(59, 48, 42, 0.12), inset 0 0 50px rgba(223, 211, 195, 0.3);
+            box-shadow: 0 15px 40px rgba(184, 134, 139, 0.08), inset 0 0 50px rgba(230, 215, 213, 0.2);
             padding: 50px 40px;
             position: relative;
         }
@@ -140,7 +140,7 @@
             top: 10px; left: 10px; right: 10px; bottom: 10px;
             border: 1px solid var(--gold-accent);
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .wrapper::after {
@@ -151,34 +151,7 @@
             pointer-events: none;
         }
 
-        /* 傳統底部文字導覽列 */
-        .nav-footer-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px 30px;
-            padding: 18px 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-top: 45px;
-            margin-bottom: 35px;
-            font-size: 0.92rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .nav-footer-bar a {
-            text-decoration: none;
-            color: var(--main-color);
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .nav-footer-bar a:hover {
-            color: var(--accent-color);
-        }
-
-        /* 首頁：無邊框透明圖片排版（平板3欄、手機2欄） */
+        /* 首頁：無邊框透明圖片目錄（平板3欄、手機2欄） */
         .magazine-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr); /* 平板與電腦 3 欄 */
@@ -230,19 +203,31 @@
             display: block;
         }
 
-        /* 返回首頁按鈕 */
+        /* 內頁最下方置中的返回首頁按鈕 */
+        .bottom-back-container {
+            text-align: center;
+            margin-top: 45px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
         .back-home-btn {
             display: inline-block;
-            margin-bottom: 25px;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: var(--accent-color);
             text-decoration: none;
             cursor: pointer;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            padding: 6px 20px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            transition: all 0.3s ease;
         }
 
         .back-home-btn:hover {
-            text-decoration: underline;
+            border-color: var(--accent-color);
+            background-color: #faf5f5;
         }
 
         h2 {
@@ -268,7 +253,7 @@
             padding: 35px;
             border: 1px solid var(--border-color);
             font-size: 0.92rem;
-            color: #594a40;
+            color: #61504e;
             box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
         }
 
@@ -296,9 +281,9 @@
         }
 
         .card:hover {
-            border-color: var(--gold-accent);
+            border-color: var(--accent-color);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(184, 151, 104, 0.15);
+            box-shadow: 0 6px 20px rgba(184, 134, 139, 0.12);
         }
 
         .card h3 {
@@ -311,7 +296,7 @@
 
         .card p {
             font-size: 0.88rem;
-            color: #615247;
+            color: #735e5b;
             margin-bottom: 15px;
         }
 
@@ -321,43 +306,44 @@
             font-size: 0.95rem;
         }
 
+        /* 開放委託區塊（無背景、無框線、純文字與分隔圖） */
         .contact-section {
             text-align: center;
-            background: #f4eee3;
-            padding: 35px;
-            border: 1px solid var(--border-color);
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 30px;
-            background-color: var(--main-color);
-            color: #f7f3ee;
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            border: 1px solid var(--main-color);
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
-        footer {
-            text-align: center;
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: #8c7d71;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            background: transparent;
+            padding: 10px 0 20px 0;
+            border: none;
             position: relative;
             z-index: 2;
         }
 
-        /* 手機響應式微調：手機上自動改為 2 欄，無邊框 */
+        .divider-image {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            display: block;
+            margin: 30px auto 25px auto;
+            object-fit: contain;
+        }
+
+        .contact-text {
+            font-size: 0.9rem;
+            color: #61504e;
+            line-height: 2.2;
+            letter-spacing: 0.08em;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 25px;
+            font-size: 0.8rem;
+            color: #9e8784;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 手機響應式微調 */
         @media (max-width: 768px) {
             .full-banner {
                 height: 150px;
@@ -407,10 +393,6 @@
             }
             .menu-item img {
                 height: 60px;
-            }
-            .nav-footer-bar {
-                gap: 10px 15px;
-                font-size: 0.82rem;
             }
         }
     </style>
@@ -472,7 +454,6 @@
 
         <!-- 1. 注意事項 頁面 -->
         <div id="page-rules" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>注意事項</h2>
             <div class="content-box">
                 <ul>
@@ -481,20 +462,14 @@
                     <li><strong>修改次數：</strong>草稿與完稿階段皆包含指定次數的微調，大改需酌收費用。</li>
                 </ul>
             </div>
-            <!-- 底部傳統導覽列 -->
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <!-- 置中返回首頁按鈕 -->
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
         <!-- 2. 價目表 頁面 -->
         <div id="page-pricing" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>價目表</h2>
             <div class="content-box">
                 <p style="text-align: center; margin-bottom: 15px;">基本計價以千字為基準，詳細試算歡迎私訊討論：</p>
@@ -504,19 +479,13 @@
                     <li>急件加成：總金額 × 1.5 倍</li>
                 </ul>
             </div>
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
         <!-- 3. 委託項目 頁面 -->
         <div id="page-items" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>委託項目</h2>
             <div class="grid" style="margin-bottom: 20px;">
                 <div class="card">
@@ -535,19 +504,13 @@
                     <div class="price">NT$ 600 起</div>
                 </div>
             </div>
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
         <!-- 4. 委託流程 頁面 -->
         <div id="page-process" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>委託流程</h2>
             <div class="content-box">
                 <ol>
@@ -558,56 +521,42 @@
                     <li><strong>完稿尾款：</strong> 交付完稿、支付尾款後發送全文檔案。</li>
                 </ol>
             </div>
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
         <!-- 5. 範例 頁面 -->
         <div id="page-samples" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>範例</h2>
             <div class="content-box" style="text-align: center;">
                 <p>此處可放置您的過往文字作品試閱連結或截圖文字。</p>
             </div>
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
         <!-- 6. 排單 頁面 -->
         <div id="page-schedule" class="page-content">
-            <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             <h2>排單</h2>
             <div class="content-box" style="text-align: center;">
                 <p>目前的委託進度與可接單狀態：<strong>目前可預約排單</strong></p>
             </div>
-            <div class="nav-footer-bar">
-                <a onclick="switchPage('rules')">注意事項</a>
-                <a onclick="switchPage('pricing')">價目表</a>
-                <a onclick="switchPage('items')">委託項目</a>
-                <a onclick="switchPage('process')">委託流程</a>
-                <a onclick="switchPage('samples')">範例</a>
-                <a onclick="switchPage('schedule')">排單</a>
+            <div class="bottom-back-container">
+                <a class="back-home-btn" onclick="switchPage('home')">&larr; 回到主選單</a>
             </div>
         </div>
 
-        <!-- 聯絡與表單 -->
-        <div style="margin-top: 40px;">
+        <!-- 開放委託與公告區塊 -->
+        <div style="margin-top: 50px;">
             <div class="contact-section">
-                <h2>開啟委託</h2>
-                <p style="font-size: 0.9rem; color: #594a40; margin-bottom: 10px;">如果您有任何想訴說的故事，歡迎隨時與我聯繫。</p>
-                <a href="https://www.plurk.com/" target="_blank" class="btn">前往委託表單 / 噗浪聯繫</a>
+                <img src="無標題8_20260826151728.png" alt="分隔線" class="divider-image">
+                <div class="contact-text">
+                    感謝您的瀏覽參考，有需要的話歡迎直接私訊～<br>
+                    作息比較不固定，在線有看到會馬上回覆。沒回就是在睡覺(＞人＜;)<br>
+                    委託過程中有任何問題隨時可以提出，很好說話也很有耐心 ₍ᐢ. ̫.ᐢ₎♡
+                </div>
             </div>
         </div>
 
