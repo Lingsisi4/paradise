@@ -173,7 +173,7 @@
             transform: translateY(-4px);
         }
 
-        /* 透過漸層遮罩（Mask）把圖片邊緣的硬切線柔化，讓暈染自然消失 */
+        /* 透過漸層遮罩柔化圖片硬邊框 */
         .menu-item img {
             width: 100%;
             height: auto;
@@ -208,7 +208,7 @@
         .bottom-back-container {
             text-align: center;
             margin-top: 30px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             position: relative;
             z-index: 2;
         }
@@ -307,7 +307,11 @@
             font-size: 0.95rem;
         }
 
-        /* 開放委託與公告區塊 */
+        /* 開放委託與公告區塊（僅在首頁顯示） */
+        .home-only-section {
+            display: block;
+        }
+
         .contact-section {
             text-align: center;
             background: transparent;
@@ -340,7 +344,7 @@
             font-size: 0.8rem;
             color: #9e8784;
             border-top: 1px solid var(--border-color);
-            margin-top: 20px;
+            margin-top: 25px;
             position: relative;
             z-index: 2;
         }
@@ -399,7 +403,6 @@
             .card {
                 padding: 18px 15px;
             }
-            /* 手機版維持精緻的分隔線寬度上限 */
             .divider-image {
                 max-width: 300px; 
             }
@@ -556,8 +559,8 @@
             </div>
         </div>
 
-        <!-- 開放委託與公告區塊 -->
-        <div style="margin-top: 30px;">
+        <!-- 開放委託與公告區塊（僅在首頁顯示） -->
+        <div id="home-divider-section" style="margin-top: 30px;">
             <div class="contact-section">
                 <!-- 更新後的最新分隔線檔名 -->
                 <img src="1785779220064-removebg-preview.png" alt="分隔線" class="divider-image">
@@ -585,6 +588,14 @@
             const target = document.getElementById('page-' + pageName);
             if (target) {
                 target.classList.add('active');
+            }
+
+            // 控制分隔線與公告區塊：只有在首頁（home）時才顯示，點進內頁自動隱藏
+            const dividerSection = document.getElementById('home-divider-section');
+            if (pageName === 'home') {
+                dividerSection.style.display = 'block';
+            } else {
+                dividerSection.style.display = 'none';
             }
 
             // 讓卷軸捲動到頂部，閱讀體驗更好
