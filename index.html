@@ -34,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. 滿版橫幅（在卷軸框外面） */
+        /* 1. 滿版橫幅 */
         .full-banner {
             width: 100vw;
             height: 220px;
@@ -151,7 +151,7 @@
             pointer-events: none;
         }
 
-        /* 傳統底部文字導覽列（放在各頁下方） */
+        /* 傳統底部文字導覽列 */
         .nav-footer-bar {
             display: flex;
             flex-wrap: wrap;
@@ -178,59 +178,42 @@
             color: var(--accent-color);
         }
 
-        /* 首頁左右交錯（Z字形）的目錄清單設計 */
-        .menu-zigzag-container {
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            padding: 10px 20px;
+        /* 首頁：無邊框透明圖片排版（平板3欄、手機2欄） */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 平板與電腦 3 欄 */
+            gap: 30px 20px;
+            padding: 15px 10px 25px 10px;
             position: relative;
             z-index: 2;
-        }
-
-        .menu-row {
-            display: flex;
-            width: 100%;
-        }
-
-        /* 奇數行靠左 */
-        .menu-row.left {
-            justify-content: flex-start;
-        }
-
-        /* 偶數行靠右 */
-        .menu-row.right {
-            justify-content: flex-end;
         }
 
         .menu-item {
             text-align: center;
             text-decoration: none;
             cursor: pointer;
-            display: inline-block;
-            width: 220px; /* 控制單個目錄項目的最大寬度 */
+            display: block;
             transition: transform 0.3s ease;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
-        /* 透明圖片：拿掉所有邊框、陰影、背景 */
+        /* 完全無邊框、無陰影、透明底的橫式圖片設定 */
         .menu-item img {
             width: 100%;
-            height: auto;
-            max-height: 110px;
+            height: 75px; /* 適合橫式長方形的高度 */
             object-fit: contain;
             background: transparent;
             border: none;
             box-shadow: none;
             display: block;
-            margin: 0 auto 8px auto;
+            margin: 0 auto 10px auto;
         }
 
         .menu-item span {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--main-color);
             font-weight: 500;
             letter-spacing: 0.1em;
@@ -374,7 +357,7 @@
             z-index: 2;
         }
 
-        /* 手機與平板響應式微調 */
+        /* 手機響應式微調：手機上自動改為 2 欄，無邊框 */
         @media (max-width: 768px) {
             .full-banner {
                 height: 150px;
@@ -418,8 +401,12 @@
                 padding: 30px 15px;
                 margin: 0 10px 30px 10px;
             }
-            .menu-item {
-                width: 170px; /* 手機上適度調整圖片區塊寬度 */
+            .magazine-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 15px;
+            }
+            .menu-item img {
+                height: 60px;
             }
             .nav-footer-bar {
                 gap: 10px 15px;
@@ -453,51 +440,33 @@
     <!-- 3. 卷軸框本體 -->
     <div class="wrapper">
 
-        <!-- 首頁：左右交錯（Z字形）的圖片目錄選單 -->
+        <!-- 首頁：無邊框透明圖片目錄（平板3欄、手機2欄） -->
         <div id="page-home" class="page-content active">
-            <div class="menu-zigzag-container">
-                <!-- 第 1 行：注意事項 (靠左) -->
-                <div class="menu-row left">
-                    <a class="menu-item" onclick="switchPage('rules')">
-                        <img src="7b6fb49bc6d7ba1b5f4e5bd70302a92e.png" alt="注意事項">
-                        <span>注意事項</span>
-                    </a>
-                </div>
-                <!-- 第 2 行：價目表 (靠右) -->
-                <div class="menu-row right">
-                    <a class="menu-item" onclick="switchPage('pricing')">
-                        <img src="價目表.png" alt="價目表">
-                        <span>價目表</span>
-                    </a>
-                </div>
-                <!-- 第 3 行：委託項目 (靠左) -->
-                <div class="menu-row left">
-                    <a class="menu-item" onclick="switchPage('items')">
-                        <img src="委託項目.png" alt="委託項目">
-                        <span>委託項目</span>
-                    </a>
-                </div>
-                <!-- 第 4 行：委託流程 (靠右) -->
-                <div class="menu-row right">
-                    <a class="menu-item" onclick="switchPage('process')">
-                        <img src="委託流程.png" alt="委託流程">
-                        <span>委託流程</span>
-                    </a>
-                </div>
-                <!-- 第 5 行：範例 (靠左) -->
-                <div class="menu-row left">
-                    <a class="menu-item" onclick="switchPage('samples')">
-                        <img src="範例.png" alt="範例">
-                        <span>範例</span>
-                    </a>
-                </div>
-                <!-- 第 6 行：排單 (靠右) -->
-                <div class="menu-row right">
-                    <a class="menu-item" onclick="switchPage('schedule')">
-                        <img src="排單.png" alt="排單">
-                        <span>排單</span>
-                    </a>
-                </div>
+            <div class="magazine-grid">
+                <a class="menu-item" onclick="switchPage('rules')">
+                    <img src="注意事項.png" alt="注意事項">
+                    <span>注意事項</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('pricing')">
+                    <img src="價目表.png" alt="價目表">
+                    <span>價目表</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('items')">
+                    <img src="委託項目.png" alt="委託項目">
+                    <span>委託項目</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('process')">
+                    <img src="委託流程.png" alt="委託流程">
+                    <span>委託流程</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('samples')">
+                    <img src="範例.png" alt="範例">
+                    <span>範例</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('schedule')">
+                    <img src="排單.png" alt="排單">
+                    <span>排單</span>
+                </a>
             </div>
         </div>
 
